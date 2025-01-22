@@ -3,44 +3,45 @@ package model;
 import java.util.Arrays;
 
 public class Sale {
-	String client;
-	Product[] products;
-	double amount;
 
-	public Sale(String client, Product[] products, double amount) {
-		super();
-		this.client = client;
-		this.products = products;
-		this.amount = amount;
-	}
+    String client;
+    Product[] products;
+    Amount amount;
 
-	public String getClient() {
-		return client;
-	}
+    public Sale(String client, Product[] products, double amount) {
+        super();
+        this.client = client;
+        this.products = products;
+        this.amount = new Amount(amount);
+    }
 
-	public void setClient(String client) {
-		this.client = client;
-	}
+    public String getClient() {
+        return client;
+    }
 
-	public Product[] getProducts() {
-		return products;
-	}
+    public void setClient(String client) {
+        this.client = client;
+    }
 
-	public void setProducts(Product[] products) {
-		this.products = products;
-	}
+    public Product[] getProducts() {
+        return products;
+    }
 
-	public double getAmount() {
-		return amount;
-	}
+    public void setProducts(Product[] products) {
+        this.products = products;
+    }
 
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
+    public Amount getAmount() {
+        return amount;
+    }
 
-	@Override
-	public String toString() {
-		return "Sale [client=" + client + ", products=" + Arrays.toString(products) + ", amount=" + amount + "]";
-	}
+    public void setAmount(Amount amount) {
+        this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Sale [client=" + client + ", products=" + Arrays.toString(products) + ", amount=" + amount + "]";
+    }
 
 }

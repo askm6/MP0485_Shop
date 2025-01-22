@@ -1,84 +1,91 @@
 package model;
 
 public class Product {
-	private int id;
-	private String name;
-	private double publicPrice;
-	private double wholesalerPrice;
-	private boolean available;
-	private int stock;
-	private static int totalProducts;
 
-	static double EXPIRATION_RATE = 0.60;
+    private int id;
+    private String name;
+    private Amount publicPrice;
+    private Amount wholesalerPrice;
+    private boolean available;
+    private int stock;
+    private static int totalProducts;
 
-	public Product(String name, double wholesalerPrice, boolean available, int stock) {
-		super();
-		this.id = totalProducts + 1;
-		this.name = name;
-		this.wholesalerPrice = wholesalerPrice;
-		this.available = available;
-		this.stock = stock;
-		totalProducts++;
-	}
+    static double EXPIRATION_RATE = 0.60;
 
-	public int getId() {
-		return id;
-	}
+    public Product(String name, Amount wholesalerPrice, boolean available, int stock) {
+        super();
+        this.id = totalProducts + 1;
+        this.name = name;
+        this.publicPrice = new Amount(wholesalerPrice.getValue() * 2);
+        this.wholesalerPrice = new Amount(wholesalerPrice.getValue());
+        this.available = available;
+        this.stock = stock;
+        totalProducts++;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public double getPublicPrice() {
-		return publicPrice;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPublicPrice(double publicPrice) {
-		this.publicPrice = publicPrice;
-	}
+    public Amount getPublicPrice() {
+        return publicPrice;
+    }
 
-	public double getWholesalerPrice() {
-		return wholesalerPrice;
-	}
+    public void setPublicPrice(Amount publicPrice) {
+        this.publicPrice = publicPrice;
+    }
 
-	public void setWholesalerPrice(double wholesalerPrice) {
-		this.wholesalerPrice = wholesalerPrice;
-	}
+    public Amount getWholesalerPrice() {
+        return wholesalerPrice;
+    }
 
-	public boolean isAvailable() {
-		return available;
-	}
+    public void setWholesalerPrice(Amount wholesalerPrice) {
+        this.wholesalerPrice = wholesalerPrice;
+    }
 
-	public void setAvailable(boolean available) {
-		this.available = available;
-	}
+    public boolean isAvailable() {
+        return available;
+    }
 
-	public int getStock() {
-		return stock;
-	}
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
+    public int getStock() {
+        return stock;
+    }
 
-	public static int getTotalProducts() {
-		return totalProducts;
-	}
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
-	public static void setTotalProducts(int totalProducts) {
-		Product.totalProducts = totalProducts;
-	}
+    public static int getTotalProducts() {
+        return totalProducts;
+    }
 
-	public void expire() {
-		EXPIRATION_RATE = 0.2;
-		this.publicPrice = this.getPublicPrice() * EXPIRATION_RATE;
-	}
+    public static void setTotalProducts(int totalProducts) {
+        Product.totalProducts = totalProducts;
+    }
+
+    public void expire() {
+        this.publicPrice.setValue(this.getPublicPrice().getValue() * EXPIRATION_RATE);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" + "id=" + id + ", name=" + name + ", publicPrice=" + publicPrice + ", wholesalerPrice=" + wholesalerPrice + ", available=" + available + ", stock=" + stock + '}';
+    }
+
 }
