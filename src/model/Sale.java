@@ -1,33 +1,34 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Sale {
 
-    String client;
-    Product[] products;
+    Client client;
+    ArrayList<Product> products;
     Amount amount;
 
-    public Sale(String client, Product[] products, double amount) {
+    public Sale(int client, ArrayList<Product>  products, double amount) {
         super();
-        this.client = client;
+        this.client = new Client(client);
         this.products = products;
         this.amount = new Amount(amount);
     }
 
-    public String getClient() {
-        return client;
+    public int getClient() {
+        return client.getMemberId();
     }
 
-    public void setClient(String client) {
-        this.client = client;
+    public void setClient(int client) {
+        this.client.setMemberId(client);
     }
 
-    public Product[] getProducts() {
+    public ArrayList<Product>  getProducts() {
         return products;
     }
 
-    public void setProducts(Product[] products) {
+    public void setProducts(ArrayList<Product>  products) {
         this.products = products;
     }
 
@@ -41,7 +42,7 @@ public class Sale {
 
     @Override
     public String toString() {
-        return "Sale [client=" + client + ", products=" + Arrays.toString(products) + ", amount=" + amount + "]";
+        return "Sale{" + "client=" + client + ", products=" + products + ", amount=" + amount + '}';
     }
-
+    
 }
